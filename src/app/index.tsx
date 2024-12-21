@@ -1,9 +1,10 @@
+import { Welcome } from "@/components/welcome";
 import { View, Text, StyleSheet } from "react-native";
 
 export default function Index() {
   return (
     <View style={styles.container}>
-      <Text>Hello World</Text>
+      <Welcome />
     </View>
   );
 }
@@ -11,7 +12,7 @@ export default function Index() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    gap: 40,
+    padding: 40,
   },
 });
