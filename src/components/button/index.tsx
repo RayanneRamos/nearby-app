@@ -29,3 +29,11 @@ function Button({ children, style, isLoading = false, ...props }: ButtonProps) {
     </TouchableOpacity>
   );
 }
+
+function Title({ children }: TextProps) {
+  return <Text style={styles.title}>{children}</Text>;
+}
+
+Button.Title = Title;
+
+export { Button };
