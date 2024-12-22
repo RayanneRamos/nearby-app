@@ -10,17 +10,17 @@ import { colors } from "@/styles/colors";
 import { IconProps as TablerIconProps } from "@tabler/icons-react-native";
 
 interface ButtonProps extends TouchableOpacityProps {
-  isLoading?: boolean;
+  isLoading?: false;
 }
 
 interface IconProps {
   icon: React.ComponentType<TablerIconProps>;
 }
 
-function Button({ children, style, isLoading = false, ...props }: ButtonProps) {
+function Button({ children, isLoading = false, ...props }: ButtonProps) {
   return (
     <TouchableOpacity
-      style={[(styles.container, style)]}
+      style={styles.container}
       activeOpacity={0.8}
       disabled={isLoading}
       {...props}
