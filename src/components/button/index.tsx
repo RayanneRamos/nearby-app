@@ -1,16 +1,20 @@
 import {
   ActivityIndicator,
   Text,
+  TextProps,
   TouchableOpacity,
   TouchableOpacityProps,
 } from "react-native";
 import { styles } from "./styles";
-import { Children, ReactNode } from "react";
 import { colors } from "@/styles/colors";
-import { TextProps } from "react-native-svg";
+import { IconProps as TablerIconProps } from "@tabler/icons-react-native";
 
 interface ButtonProps extends TouchableOpacityProps {
-  isLoading?: false;
+  isLoading?: boolean;
+}
+
+interface IconProps {
+  icon: React.ComponentType<TablerIconProps>;
 }
 
 function Button({ children, style, isLoading = false, ...props }: ButtonProps) {
@@ -34,6 +38,11 @@ function Title({ children }: TextProps) {
   return <Text style={styles.title}>{children}</Text>;
 }
 
+function Icon({ icon: Icon }: IconProps) {
+  return <Icon size={24} color={colors.gray[100]} />;
+}
+
 Button.Title = Title;
+Button.Icon = Icon;
 
 export { Button };
