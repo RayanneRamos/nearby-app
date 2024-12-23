@@ -1,8 +1,12 @@
 import { Button } from "@/components/button";
 import { Cover } from "@/components/market/cover";
-import { Details } from "@/components/market/details";
+import { Details, DetailsProps } from "@/components/market/details";
 import { CameraView } from "expo-camera";
 import { Modal, ScrollView, StatusBar, StyleSheet, View } from "react-native";
+
+export interface MarketIdProps extends DetailsProps {
+  cover: string;
+}
 
 export default function Market() {
   return (
