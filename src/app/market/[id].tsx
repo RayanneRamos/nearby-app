@@ -76,6 +76,19 @@ export default function Market() {
     }
   }
 
+  function handleUseCoupon(id: string) {
+    setIsVisibleCameraModal(false);
+
+    Alert.alert(
+      "Cupom",
+      "Não é possível reutilizar um cupom resgatado. Deseja realmente resgatar o cupom?",
+      [
+        { style: "cancel", text: "Não" },
+        { text: "Sim", onPress: () => getCoupon(id) },
+      ]
+    );
+  }
+
   useEffect(() => {
     fetchMarket();
   }, [params.id]);
