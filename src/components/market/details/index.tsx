@@ -3,6 +3,22 @@ import { Info } from "../info";
 import { IconMapPin, IconPhone, IconTicket } from "@tabler/icons-react-native";
 import { styles } from "./styles";
 
+export interface DetailsProps {
+  name: string;
+  description: string;
+  address: string;
+  phone: string;
+  coupons: number;
+  rules: {
+    id: string;
+    description: string;
+  }[];
+}
+
+interface Props {
+  data: DetailsProps;
+}
+
 export function Details() {
   return (
     <View style={styles.container}>
