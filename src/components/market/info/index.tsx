@@ -12,7 +12,7 @@ export function Info({ description, icon: Icon }: InfoProps) {
   return (
     <View style={styles.container}>
       <Icon size={16} color={colors.gray[400]} />
-      <Text style={styles.text}>oi</Text>
+      <Text style={styles.text}>{description}</Text>
     </View>
   );
 }
