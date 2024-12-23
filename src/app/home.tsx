@@ -5,7 +5,10 @@ import { api } from "@/services/api";
 import { useEffect, useState } from "react";
 import { Alert, StyleSheet, Text, View } from "react-native";
 
-interface MarketsProps extends PlaceProps {}
+interface MarketsProps extends PlaceProps {
+  latitude: number;
+  longitude: number;
+}
 
 export default function Home() {
   const [categories, setCategories] = useState<CategoriesProps[]>([]);
