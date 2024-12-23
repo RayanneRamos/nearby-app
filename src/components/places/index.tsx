@@ -24,7 +24,16 @@ export function Places({ data }: PlacesProps) {
       backgroundStyle={styles.container}
       enableOverDrag={false}
     >
-      <BottomSheetFlatList />
+      <BottomSheetFlatList
+        data={data}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => <Place data={item} />}
+        contentContainerStyle={styles.content}
+        ListHeaderComponent={() => (
+          <Text style={styles.title}>Explore locais perto de você</Text>
+        )}
+        showsVerticalScrollIndicator={false}
+      />
     </BottomSheet>
   );
 }
