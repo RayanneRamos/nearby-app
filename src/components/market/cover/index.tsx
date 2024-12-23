@@ -3,9 +3,13 @@ import { ImageBackground, View } from "react-native";
 import { styles } from "./styles";
 import { IconArrowLeft } from "@tabler/icons-react-native";
 
-export function Cover() {
+interface CoverProps {
+  uri: string;
+}
+
+export function Cover({ uri }: CoverProps) {
   return (
-    <ImageBackground style={styles.container}>
+    <ImageBackground source={{ uri }} style={styles.container}>
       <View style={styles.header}>
         <Button style={{ width: 40, height: 40 }}>
           <Button.Icon icon={IconArrowLeft} />
