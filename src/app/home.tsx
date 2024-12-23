@@ -1,7 +1,10 @@
 import { Categories, CategoriesProps } from "@/components/categories";
+import { PlaceProps } from "@/components/place";
 import { api } from "@/services/api";
 import { useEffect, useState } from "react";
 import { Alert, StyleSheet, Text, View } from "react-native";
+
+interface MarketsProps extends PlaceProps {}
 
 export default function Home() {
   const [categories, setCategories] = useState<CategoriesProps[]>([]);
