@@ -59,6 +59,23 @@ export default function Market() {
     }
   }
 
+  async function getCoupon(id: string) {
+    try {
+      setCouponIsFetching(true);
+
+      const { data } = await api.patch(`/coupons/${id}`);
+
+      Alert.alert("Cupom", data.coupon);
+
+      setCoupon(data.coupon);
+    } catch (error) {
+      console.log(error);
+      Alert.alert("Erro", "Não foi possível utilizar o cupom.");
+    } finally {
+      setCouponIsFetching(false);
+    }
+  }
+
   useEffect(() => {
     fetchMarket();
   }, [params.id]);
