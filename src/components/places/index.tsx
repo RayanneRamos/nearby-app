@@ -3,6 +3,7 @@ import { useRef } from "react";
 import { Text, useWindowDimensions } from "react-native";
 import { styles } from "./styles";
 import { Place, PlaceProps } from "../place";
+import { RelativePathString, router } from "expo-router";
 
 interface PlacesProps {
   data: PlaceProps[];
@@ -27,7 +28,14 @@ export function Places({ data }: PlacesProps) {
       <BottomSheetFlatList
         data={data}
         keyExtractor={(item) => item.id}
-        renderItem={({ item }) => <Place data={item} />}
+        renderItem={({ item }) => (
+          <Place
+            data={item}
+            onPress={() =>
+              router.navigate(`/market/${item.id}` as RelativePathString)
+            }
+          />
+        )}
         contentContainerStyle={styles.content}
         ListHeaderComponent={() => (
           <Text style={styles.title}>Explore locais perto de você</Text>
