@@ -2,9 +2,9 @@ import { Button } from "@/components/button";
 import { Cover } from "@/components/market/cover";
 import { Details, DetailsProps } from "@/components/market/details";
 import { api } from "@/services/api";
-import { CameraView } from "expo-camera";
+import { CameraView, useCameraPermissions } from "expo-camera";
 import { router, useLocalSearchParams } from "expo-router";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   Alert,
   Modal,
@@ -19,9 +19,14 @@ export interface MarketIdProps extends DetailsProps {
 }
 
 export default function Market() {
+  const params = useLocalSearchParams<{ id: string }>();
   const [data, setData] = useState<MarketIdProps>();
   const [isLoading, setIsLoading] = useState(true);
-  const params = useLocalSearchParams<{ id: string }>();
+  const [coupon, setCoupon] = useState<string | null>(null);
+  const [isVisibleCameraModal, setIsVisibleCameraModal] = useState(false);
+  const [_, requestPermission] = useCameraPermissions();
+  const [couponIsFetching, setCouponIsFetching] = useState(false);
+  const qrLock = useRef(false);
 
   async function fetchMarket() {
     try {
@@ -37,6 +42,26 @@ export default function Market() {
       );
     }
   }
+
+  async function handleOpenCamera() {
+    try {
+      const { granted } = await requestPermission();
+
+      if (!granted) {
+        return Alert.alert("Câmera", "Você precisa habilitar o uso da câmera.");
+      }
+
+      qrLock.current = false;
+      setIsVisibleCameraModal(true);
+    } catch (error) {
+      console.log(error);
+      Alert.alert("Câmera", "Não foi possível utilizar a câmera.");
+    }
+  }
+
+  useEffect(() => {
+    fetchMarket();
+  }, [params.id]);
 
   return (
     <View style={styles.container}>
