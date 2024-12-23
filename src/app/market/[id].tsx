@@ -1,14 +1,43 @@
 import { Button } from "@/components/button";
 import { Cover } from "@/components/market/cover";
 import { Details, DetailsProps } from "@/components/market/details";
+import { api } from "@/services/api";
 import { CameraView } from "expo-camera";
-import { Modal, ScrollView, StatusBar, StyleSheet, View } from "react-native";
+import { router, useLocalSearchParams } from "expo-router";
+import { useState } from "react";
+import {
+  Alert,
+  Modal,
+  ScrollView,
+  StatusBar,
+  StyleSheet,
+  View,
+} from "react-native";
 
 export interface MarketIdProps extends DetailsProps {
   cover: string;
 }
 
 export default function Market() {
+  const [data, setData] = useState<MarketIdProps>();
+  const [isLoading, setIsLoading] = useState(true);
+  const params = useLocalSearchParams<{ id: string }>();
+
+  async function fetchMarket() {
+    try {
+      const { data } = await api.get(`/markets/${params.id}`);
+      setData(data);
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error);
+      Alert.alert(
+        "Erro",
+        "Não foi possível carregar os detalhes do estabelecimento.",
+        [{ text: "Ok", onPress: () => router.back() }]
+      );
+    }
+  }
+
   return (
     <View style={styles.container}>
       <StatusBar barStyle="light-content" />
