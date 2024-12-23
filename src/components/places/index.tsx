@@ -1,9 +1,14 @@
 import BottomSheet, { BottomSheetFlatList } from "@gorhom/bottom-sheet";
 import { useRef } from "react";
-import { useWindowDimensions } from "react-native";
+import { Text, useWindowDimensions } from "react-native";
 import { styles } from "./styles";
+import { Place, PlaceProps } from "../place";
 
-export function Places() {
+interface PlacesProps {
+  data: PlaceProps[];
+}
+
+export function Places({ data }: PlacesProps) {
   const dimensions = useWindowDimensions();
   const bottomSheetRef = useRef<BottomSheet>(null);
   const snapPoints = {
