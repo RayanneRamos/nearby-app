@@ -91,6 +91,10 @@ export default function Market() {
     );
   }
 
+  useEffect(() => {
+    fetchMarket();
+  }, [params.id, coupon]);
+
   if (isLoading) {
     return <Loading />;
   }
@@ -98,10 +102,6 @@ export default function Market() {
   if (!data) {
     return <Redirect href="/home" />;
   }
-
-  useEffect(() => {
-    fetchMarket();
-  }, [params.id, coupon]);
 
   return (
     <View style={styles.container}>
@@ -118,7 +118,7 @@ export default function Market() {
       </View>
       <Modal style={styles.modal} visible={isVisibleCameraModal}>
         <CameraView
-          style={{ flex: 1 }}
+          style={styles.cameraView}
           facing="back"
           onBarcodeScanned={({ data }) => {
             if (data && !qrLock.current) {
@@ -127,7 +127,7 @@ export default function Market() {
             }
           }}
         />
-        <View style={{ position: "absolute", bottom: 32, left: 32, right: 32 }}>
+        <View style={styles.backButtonContainer}>
           <Button
             onPress={() => setIsVisibleCameraModal(false)}
             isLoading={couponIsFetching}
@@ -151,5 +151,16 @@ const styles = StyleSheet.create({
 
   modal: {
     flex: 1,
+  },
+
+  cameraView: {
+    flex: 1,
+  },
+
+  backButtonContainer: {
+    position: "absolute",
+    bottom: 32,
+    left: 32,
+    right: 32,
   },
 });
