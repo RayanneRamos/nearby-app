@@ -13,4 +13,9 @@ export const styles = StyleSheet.create({
     padding: 24,
     paddingTop: 56,
   },
+
+  button: {
+    width: 40,
+    height: 40,
+  },
 });
