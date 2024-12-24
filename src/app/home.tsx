@@ -79,7 +79,7 @@ export default function Home() {
         selected={category}
       />
       <MapView
-        style={{ flex: 1 }}
+        style={styles.mapView}
         initialRegion={{
           latitude: currentLocation.latitude,
           longitude: currentLocation.longitude,
@@ -112,24 +112,8 @@ export default function Home() {
                 }
               >
                 <View>
-                  <Text
-                    style={{
-                      fontSize: 14,
-                      color: colors.gray[600],
-                      fontFamily: fontFamily.medium,
-                    }}
-                  >
-                    {item.name}
-                  </Text>
-                  <Text
-                    style={{
-                      fontSize: 12,
-                      color: colors.gray[600],
-                      fontFamily: fontFamily.regular,
-                    }}
-                  >
-                    {item.address}
-                  </Text>
+                  <Text style={styles.name}>{item.name}</Text>
+                  <Text style={styles.address}>{item.address}</Text>
                 </View>
               </Callout>
             </Marker>
@@ -145,5 +129,21 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#cecece",
+  },
+
+  mapView: {
+    flex: 1,
+  },
+
+  name: {
+    fontSize: 14,
+    color: colors.gray[600],
+    fontFamily: fontFamily.medium,
+  },
+
+  address: {
+    fontSize: 12,
+    color: colors.gray[600],
+    fontFamily: fontFamily.regular,
   },
 });
