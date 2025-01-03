@@ -109,7 +109,7 @@ export default function Market() {
       <ScrollView showsVerticalScrollIndicator={false}>
         <Cover uri={data.cover} />
         <Details data={data} />
-        {coupon && <Coupon code="FM345T6" />}
+        {coupon && <Coupon code={coupon} />}
       </ScrollView>
       <View style={styles.buttonContainer}>
         <Button onPress={handleOpenCamera}>
