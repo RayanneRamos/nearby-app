@@ -8,7 +8,7 @@ interface CouponProps {
   data: DetailsProps;
 }
 
-export function Coupon({ data }: CouponProps) {
+export function CouponAvailable({ data }: CouponProps) {
   return (
     <View style={styles.couponContainer}>
       <IconTicket size={24} color={colors.red.base} />
