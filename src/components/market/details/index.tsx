@@ -8,7 +8,7 @@ import {
 } from "@tabler/icons-react-native";
 import { styles } from "./styles";
 import { colors } from "@/styles/colors";
-import { CouponAvailable } from "@/components/coupon";
+import { CouponAvailable } from "@/components/couponAvailable";
 
 export interface DetailsProps {
   name: string;
