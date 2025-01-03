@@ -9,6 +9,7 @@ import {
 import { styles } from "./styles";
 import { colors } from "@/styles/colors";
 import { CouponAvailable } from "@/components/couponAvailable";
+import { CouponUsed } from "@/components/couponUsed";
 
 export interface DetailsProps {
   name: string;
@@ -51,6 +52,7 @@ export function Details({ data }: Props) {
         <Info icon={IconMapPin} description={data.address} />
         <Info icon={IconPhone} description={`+55 ${data.phone}`} />
       </View>
+      <CouponUsed />
     </View>
   );
 }
