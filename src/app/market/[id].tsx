@@ -4,6 +4,7 @@ import { Coupon } from "@/components/market/coupon";
 import { Cover } from "@/components/market/cover";
 import { Details, DetailsProps } from "@/components/market/details";
 import { api } from "@/services/api";
+import { IconScan } from "@tabler/icons-react-native";
 import { CameraView, useCameraPermissions } from "expo-camera";
 import { Redirect, router, useLocalSearchParams } from "expo-router";
 import { useEffect, useRef, useState } from "react";
@@ -113,6 +114,7 @@ export default function Market() {
       </ScrollView>
       <View style={styles.buttonContainer}>
         <Button onPress={handleOpenCamera}>
+          <Button.Icon icon={IconScan} />
           <Button.Title>Ler QR Code</Button.Title>
         </Button>
       </View>
