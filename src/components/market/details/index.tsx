@@ -8,7 +8,7 @@ import {
 } from "@tabler/icons-react-native";
 import { styles } from "./styles";
 import { colors } from "@/styles/colors";
-import { Coupon } from "@/components/coupon";
+import { CouponAvailable } from "@/components/coupon";
 
 export interface DetailsProps {
   name: string;
@@ -34,12 +34,7 @@ export function Details({ data }: Props) {
         <IconToolsKitchen2 size={24} color={colors.green.light} />
       </View>
       <Text style={styles.description}>{data.description}</Text>
-      <Coupon data={data} />
-      <View style={styles.group}>
-        <Text style={styles.title}>Informações</Text>
-        <Info icon={IconMapPin} description={data.address} />
-        <Info icon={IconPhone} description={`+55 ${data.phone}`} />
-      </View>
+      <CouponAvailable data={data} />
       <View style={styles.group}>
         <Text style={styles.title}>Regulamento</Text>
         {data.rules.map((item) => {
@@ -50,6 +45,11 @@ export function Details({ data }: Props) {
             >{`\u2022 ${item.description}`}</Text>
           );
         })}
+      </View>
+      <View style={styles.group}>
+        <Text style={styles.title}>Informações</Text>
+        <Info icon={IconMapPin} description={data.address} />
+        <Info icon={IconPhone} description={`+55 ${data.phone}`} />
       </View>
     </View>
   );
