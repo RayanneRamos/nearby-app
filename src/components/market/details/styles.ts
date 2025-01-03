@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
     fontFamily: fontFamily.regular,
     color: colors.gray[500],
     marginTop: 12,
-    marginBottom: 32,
+    marginBottom: 24,
     lineHeight: 22,
   },
 
@@ -41,5 +41,13 @@ export const styles = StyleSheet.create({
     marginBottom: 12,
   },
 
-  rule: {},
+  nameContainer: {
+    marginRight: 32,
+    flexDirection: "row",
+    gap: 8,
+  },
+
+  rule: {
+    fontSize: 14,
+  },
 });
