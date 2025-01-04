@@ -1,22 +1,61 @@
-import { Text } from "react-native";
+import { Alert, Text } from "react-native";
 import { View } from "react-native";
 import { styles } from "./styles";
 import { IconTicket } from "@tabler/icons-react-native";
 import { colors } from "@/styles/colors";
+import { useLocalSearchParams } from "expo-router";
+import { useEffect, useState } from "react";
+import { api } from "@/services/api";
+
+interface CouponUsedProps {
+  id: string;
+  date: string;
+}
 
 export function CouponUsed() {
+  const params = useLocalSearchParams<{ id: string }>();
+  const [couponsAlreadyUsed, setCouponsAlreadyUsed] = useState<
+    CouponUsedProps[]
+  >([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  async function fetchUsedCoupons() {
+    try {
+      setIsLoading(true);
+
+      const { data } = await api.get(`/coupons/${params.id}/used`);
+      setCouponsAlreadyUsed(data);
+    } catch (error) {
+      console.log(error);
+      Alert.alert(
+        "Erro",
+        "Não foi possível listar os cupons já utilizados nesse estabelecimento."
+      );
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    fetchUsedCoupons();
+  }, [params.id]);
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Cupons usados</Text>
       <View style={styles.infoContainer}>
-        <View style={styles.containerContent}>
-          <IconTicket size={16} color={colors.green.light} />
-          <Text style={styles.couponInfo}>26/09/24 às 21:32</Text>
-        </View>
-        <View style={styles.containerContent}>
-          <IconTicket size={16} color={colors.green.light} />
-          <Text style={styles.couponInfo}>14/08/24 às 20:56</Text>
-        </View>
+        {couponsAlreadyUsed.length === 0 ? (
+          <Text>Nenhum cupom usado ainda.</Text>
+        ) : (
+          couponsAlreadyUsed.map((coupon) => {
+            return (
+              <View key={coupon.id} style={styles.containerContent}>
+                <IconTicket size={16} color={colors.green.light} />
+                <Text style={styles.couponInfo}>{coupon.date}</Text>
+              </View>
+            );
+          })
+        )}
       </View>
     </View>
   );
