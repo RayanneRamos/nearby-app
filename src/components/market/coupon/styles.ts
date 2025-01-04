@@ -5,6 +5,7 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 32,
+    marginTop: 32,
   },
 
   title: {
@@ -29,5 +30,11 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: fontFamily.semiBold,
     textTransform: "uppercase",
+  },
+
+  buttonClipboard: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8,
   },
 });
