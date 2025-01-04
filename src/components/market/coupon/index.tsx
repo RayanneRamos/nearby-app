@@ -1,5 +1,6 @@
 import { IconTicket } from "@tabler/icons-react-native";
-import { Alert, Clipboard, Text, TouchableOpacity, View } from "react-native";
+import { Alert, Text, TouchableOpacity, View } from "react-native";
+import * as Clipboard from "expo-clipboard";
 import { styles } from "./styles";
 import { colors } from "@/styles/colors";
 
@@ -9,7 +10,7 @@ interface CouponProps {
 
 export function Coupon({ code }: CouponProps) {
   async function handleCopyCouponToClipboard() {
-    await Clipboard.setString(code);
+    await Clipboard.setStringAsync(code);
     Alert.alert("Sucesso", "Cupom copiado para a àrea de transferência.");
   }
 
