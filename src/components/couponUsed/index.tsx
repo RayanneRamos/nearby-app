@@ -9,7 +9,7 @@ import { api } from "@/services/api";
 
 interface CouponUsedProps {
   id: string;
-  date: string;
+  usedAt: string;
 }
 
 export function CouponUsed() {
@@ -25,6 +25,7 @@ export function CouponUsed() {
 
       const { data } = await api.get(`/coupons/${params.id}/used`);
       setCouponsAlreadyUsed(data);
+      console.log(data);
     } catch (error) {
       console.log(error);
       Alert.alert(
@@ -48,10 +49,27 @@ export function CouponUsed() {
           <Text>Nenhum cupom usado ainda.</Text>
         ) : (
           couponsAlreadyUsed.map((coupon) => {
+            const formattedDate = new Date(coupon.usedAt).toLocaleString(
+              "pt-BR",
+              {
+                day: "2-digit",
+                month: "2-digit",
+                year: "numeric",
+              }
+            );
+            const formattedTime = new Date(coupon.usedAt).toLocaleTimeString(
+              "pt-BR",
+              {
+                hour: "2-digit",
+                minute: "2-digit",
+              }
+            );
+
+            const formattedDateTime = `${formattedDate} às ${formattedTime}`;
             return (
               <View key={coupon.id} style={styles.containerContent}>
                 <IconTicket size={16} color={colors.green.light} />
-                <Text style={styles.couponInfo}>{coupon.date}</Text>
+                <Text style={styles.couponInfo}>{formattedDateTime}</Text>
               </View>
             );
           })
