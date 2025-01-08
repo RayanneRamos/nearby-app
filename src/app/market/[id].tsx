@@ -113,7 +113,10 @@ export default function Market() {
         {coupon && <Coupon code={coupon} />}
       </ScrollView>
       <View style={styles.buttonContainer}>
-        <Button style={styles.directionButton}>
+        <Button
+          style={styles.directionButton}
+          onPress={() => router.navigate(`/market/${params.id}/location`)}
+        >
           <Button.Icon icon={IconMapPin} />
         </Button>
         <Button style={styles.qrCodeButton} onPress={handleOpenCamera}>
