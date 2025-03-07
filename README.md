@@ -23,7 +23,7 @@
 3. **Leitura de QR Code**: Escaneie QR Codes com a câmera para desbloquear ofertas e informações adicionais.
 4. **Geolocalização em Tempo Real**: Utiliza a localização do dispositivo para atualizar os resultados de forma dinâmica.
 
-## 🧪 Technologies
+## 🧪 Tecnologias
 
 Esse projeto foi desenvolvido com as seguintes tecnologias:
 
