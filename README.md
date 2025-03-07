@@ -1,7 +1,7 @@
 <h1 align='center'>Nearby App</h1>
 
 <p align='center'>
-  <img src='https://github.com/user-attachments/assets/a9da2511-98ff-470a-9345-e8be52c8b645' alt='background-nearby-image' />
+  <img src='https://github.com/user-attachments/assets/ff9c8f7c-28ee-43d1-a6c1-93fdd1caedbb' alt='background-nearby-image' />
 </p>
 
 <p  align='center'>
